@@ -2,12 +2,14 @@
 
 <div align="center">
   <img src="commit_health_gate_logo.png" alt="Commit Health Gate Logo" width="200" />
-</div>
 
-[![Marketplace](https://img.shields.io/badge/Marketplace-Commit_Health_Gate-blue.svg?logo=github)](https://github.com/marketplace/actions/commit-health-gate)
-[![CI](https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml/badge.svg)](https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml)
-[![codecov](https://codecov.io/gh/rw-core/commit-health-gate/branch/main/graph/badge.svg)](https://codecov.io/gh/rw-core/commit-health-gate)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  <br />
+
+  [![Marketplace](https://img.shields.io/badge/Marketplace-Commit_Health_Gate-blue.svg?logo=github)](https://github.com/marketplace/actions/commit-health-gate)
+  [![CI](https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml/badge.svg)](https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml)
+  [![codecov](https://codecov.io/gh/rw-core/commit-health-gate/branch/main/graph/badge.svg)](https://codecov.io/gh/rw-core/commit-health-gate)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+</div>
 
 A language-agnostic code-quality gate for Pull Requests. It automatically analyzes the commits in a PR and fails or warns if they contain "mega commits" (too many lines or files changed) or commits with suspicious patterns.
 
