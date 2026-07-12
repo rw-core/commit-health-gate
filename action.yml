@@ -1,0 +1,73 @@
+name: Commit Health Gate
+description: >-
+  Language-agnostic code-quality gate for PRs. Fails or warns if PRs contain
+  mega commits or commits with suspicious patterns.
+author: rw-core
+branding:
+  icon: alert-triangle
+  color: red
+
+inputs:
+  github-token:
+    description: Token used to post the sticky PR comment (needs pull-requests:write).
+    required: false
+    default: ${{ github.token }}
+  mega-commit-line-threshold:
+    description: Threshold of lines changed to flag a commit as a mega commit.
+    required: false
+    default: '500'
+  mega-commit-file-threshold:
+    description: Threshold of files changed to flag a commit as a mega commit.
+    required: false
+    default: '20'
+  fail-on-violation:
+    description: When true, exit non-zero if any threshold is violated or suspicious commit is found.
+    required: false
+    default: 'false'
+  working-directory:
+    description: Path (relative to the checkout) of the repository root to analyse.
+    required: false
+    default: '.'
+
+outputs:
+  mega-commits-count:
+    description: Number of mega commits found.
+    value: ${{ steps.gate.outputs.mega-commits-count }}
+  suspicious-commits-count:
+    description: Number of suspicious commits found.
+    value: ${{ steps.gate.outputs.suspicious-commits-count }}
+
+runs:
+  using: composite
+  steps:
+    # Fast path: download the pre-compiled native binary for this runner from
+    # the action's GitHub Release and execute it (no SDK, ~instant startup).
+    - name: Run commit-health-gate (native binary)
+      id: gate
+      shell: bash
+      run: bash "$GITHUB_ACTION_PATH/scripts/run.sh"
+      env:
+        ACTION_REPO: ${{ github.action_repository }}
+        ACTION_REF: ${{ github.action_ref }}
+        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_MEGA_COMMIT_LINE_THRESHOLD: ${{ inputs.mega-commit-line-threshold }}
+        INPUT_MEGA_COMMIT_FILE_THRESHOLD: ${{ inputs.mega-commit-file-threshold }}
+        INPUT_FAIL_ON_VIOLATION: ${{ inputs.fail-on-violation }}
+        INPUT_WORKING_DIRECTORY: ${{ inputs.working-directory }}
+
+    # Fallback: only runs if the binary could not be fetched/verified
+    # (unpublished arch, network/checksum failure, or a pinned commit SHA).
+    - name: Set up Dart (fallback)
+      if: steps.gate.outputs.mode == 'fallback'
+      uses: dart-lang/setup-dart@v1
+    - name: Run commit-health-gate (from source, fallback)
+      if: steps.gate.outputs.mode == 'fallback'
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: dart pub get && dart run bin/main.dart
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_MEGA_COMMIT_LINE_THRESHOLD: ${{ inputs.mega-commit-line-threshold }}
+        INPUT_MEGA_COMMIT_FILE_THRESHOLD: ${{ inputs.mega-commit-file-threshold }}
+        INPUT_FAIL_ON_VIOLATION: ${{ inputs.fail-on-violation }}
+        INPUT_WORKING_DIRECTORY: ${{ inputs.working-directory }}
