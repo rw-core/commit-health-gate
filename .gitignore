@@ -1,0 +1,8 @@
+.dart_tool/
+.packages
+coverage/
+build/
+dist/
+.idea/
+.vscode/
+*.iml
