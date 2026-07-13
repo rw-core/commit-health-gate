@@ -7,7 +7,7 @@
 
   [![Marketplace](https://img.shields.io/badge/Marketplace-Commit_Health_Gate-blue.svg?logo=github)](https://github.com/marketplace/actions/commit-health-gate)
   [![CI](https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml/badge.svg)](https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml)
-  [![codecov](https://codecov.io/gh/rw-core/commit-health-gate/branch/main/graph/badge.svg)](https://codecov.io/gh/rw-core/commit-health-gate)
+  [![codecov](https://codecov.io/gh/rw-core/commit-health-gate/graph/badge.svg)](https://codecov.io/gh/rw-core/commit-health-gate)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 </div>
 
