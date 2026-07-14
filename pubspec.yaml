@@ -1,13 +1,13 @@
 name: commit_health_gate
 description: A GitHub Action that flags mega commits and suspicious commits in pull requests.
-version: 1.0.0
+version: 1.0.2
 publish_to: none
 
 environment:
   sdk: ">=3.10.0 <4.0.0"
 
 dependencies:
-  rw_git: ^3.4.4
+  rw_git: ^3.4.5
   http: ^1.2.1
 
 dev_dependencies:
