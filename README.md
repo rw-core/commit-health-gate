@@ -20,6 +20,7 @@ This helps maintain a clean, reviewable, and high-quality commit history in your
 - 🚦 **Language Agnostic:** Works with any repository regardless of the programming language.
 - 🐘 **Detects Mega Commits:** Configurable thresholds for lines changed and files changed to discourage massive commits that are hard to review.
 - 🕵️ **Identifies Suspicious Patterns:** Automatically spots commits that have questionable messages or patterns.
+- 🕒 **Identifies Burnout Commits:** Flags commits made outside configured working hours to protect team health.
 - 🚀 **Fast Native Binary:** Uses a pre-compiled native binary for near-instant startup, with a fallback to Dart source execution.
 - 💬 **Sticky PR Comments:** Posts a summary comment on the Pull Request highlighting any violations found.
 
@@ -55,6 +56,10 @@ jobs:
           mega-commit-file-threshold: '20'
           # Set to true to fail the workflow on violations
           fail-on-violation: 'true'
+          # Burnout check configuration
+          fail-on-burnout: 'false'
+          work-hours-start: '9'
+          work-hours-end: '17'
 ```
 
 ## Inputs
@@ -65,6 +70,9 @@ jobs:
 | `mega-commit-line-threshold` | Threshold of lines changed to flag a commit as a mega commit. | `'500'` | No |
 | `mega-commit-file-threshold` | Threshold of files changed to flag a commit as a mega commit. | `'20'` | No |
 | `fail-on-violation` | When true, exit non-zero if any threshold is violated or suspicious commit is found. | `'false'` | No |
+| `fail-on-burnout` | When true, exit non-zero if any burnout commits are found. | `'false'` | No |
+| `work-hours-start` | Start hour (0-23) of standard working hours. | `'9'` | No |
+| `work-hours-end` | End hour (0-23) of standard working hours. | `'17'` | No |
 | `working-directory` | Path (relative to the checkout) of the repository root to analyse. | `'.'` | No |
 
 ## Outputs
@@ -73,6 +81,7 @@ jobs:
 | --- | --- |
 | `mega-commits-count` | Number of mega commits found. |
 | `suspicious-commits-count` | Number of suspicious commits found. |
+| `burnout-commits-count` | Number of burnout commits found. |
 
 ## Publishing to GitHub Marketplace
 

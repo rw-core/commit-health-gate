@@ -28,6 +28,18 @@ inputs:
     description: Path (relative to the checkout) of the repository root to analyse.
     required: false
     default: '.'
+  fail-on-burnout:
+    description: When true, exit non-zero if any burnout commits are found.
+    required: false
+    default: 'false'
+  work-hours-start:
+    description: Start hour (0-23) of standard working hours.
+    required: false
+    default: '9'
+  work-hours-end:
+    description: End hour (0-23) of standard working hours.
+    required: false
+    default: '17'
 
 outputs:
   mega-commits-count:
@@ -36,6 +48,9 @@ outputs:
   suspicious-commits-count:
     description: Number of suspicious commits found.
     value: ${{ steps.gate.outputs.suspicious-commits-count }}
+  burnout-commits-count:
+    description: Number of burnout commits found.
+    value: ${{ steps.gate.outputs.burnout-commits-count }}
 
 runs:
   using: composite
@@ -54,6 +69,9 @@ runs:
         INPUT_MEGA_COMMIT_FILE_THRESHOLD: ${{ inputs.mega-commit-file-threshold }}
         INPUT_FAIL_ON_VIOLATION: ${{ inputs.fail-on-violation }}
         INPUT_WORKING_DIRECTORY: ${{ inputs.working-directory }}
+        INPUT_FAIL_ON_BURNOUT: ${{ inputs.fail-on-burnout }}
+        INPUT_WORK_HOURS_START: ${{ inputs.work-hours-start }}
+        INPUT_WORK_HOURS_END: ${{ inputs.work-hours-end }}
 
     # Fallback: only runs if the binary could not be fetched/verified
     # (unpublished arch, network/checksum failure, or a pinned commit SHA).
@@ -71,3 +89,6 @@ runs:
         INPUT_MEGA_COMMIT_FILE_THRESHOLD: ${{ inputs.mega-commit-file-threshold }}
         INPUT_FAIL_ON_VIOLATION: ${{ inputs.fail-on-violation }}
         INPUT_WORKING_DIRECTORY: ${{ inputs.working-directory }}
+        INPUT_FAIL_ON_BURNOUT: ${{ inputs.fail-on-burnout }}
+        INPUT_WORK_HOURS_START: ${{ inputs.work-hours-start }}
+        INPUT_WORK_HOURS_END: ${{ inputs.work-hours-end }}
