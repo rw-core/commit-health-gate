@@ -1,5 +1,5 @@
 name: commit_health_gate
-description: A GitHub Action that flags mega commits and suspicious commits in pull requests.
+description: A GitHub Action that flags unhealthy commits in pull requests.
 version: 1.0.3
 publish_to: none
 
