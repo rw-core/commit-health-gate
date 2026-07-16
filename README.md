@@ -16,8 +16,6 @@ A language-agnostic code-quality gate for Pull Requests. It automatically analyz
 
 This helps maintain a clean, reviewable, and high-quality commit history in your repository.
 
-## Features
-
 - 🚦 **Language Agnostic:** Works with any repository regardless of the programming language.
 - 🐘 **Detects Mega Commits:** Configurable thresholds for lines changed and files changed to discourage massive commits that are hard to review.
 - 🕵️ **Identifies Suspicious Patterns:** Automatically spots commits that have questionable messages or patterns.
@@ -25,7 +23,7 @@ This helps maintain a clean, reviewable, and high-quality commit history in your
 - 🚀 **Fast Native Binary:** Uses a pre-compiled native binary for near-instant startup, with a fallback to Dart source execution.
 - 💬 **Sticky PR Comments:** Posts a summary comment on the Pull Request highlighting any violations found.
 
-## Usage
+## Sample Usage
 
 Create a workflow file (e.g., `.github/workflows/commit-health.yml`) in your repository:
 
@@ -86,18 +84,17 @@ jobs:
 | `suspicious-commits-count` | Number of suspicious commits found. |
 | `burnout-commits-count` | Number of burnout commits found. |
 
-## Publishing to GitHub Marketplace
+## Example of how the end-result PR comment looks like
 
-This action is ready to be published to the GitHub Marketplace!
-The `action.yml` file contains the required `name`, `description`, and `branding` fields.
+> ## 🚦 Commit Health Gate
+> 
+> ❌ **2** violation(s) found.
+> 
+> ### 🐘 Mega Commits
+> 
+> - **`a1b2c3d`**: Commit is too large (600 lines changed, threshold: 500).
+> 
+> ### 🕵️ Suspicious Patterns
+> 
+> - **`e4f5g6h`**: Suspicious commit message detected ("fix stuff").
 
-To publish:
-1. Go to your repository on GitHub.
-2. Click on the "Releases" section.
-3. Draft a new release.
-4. Check the box that says "Publish this Action to the GitHub Marketplace".
-5. Follow the prompts to categorize and publish!
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
