@@ -1,15 +1,16 @@
-# Commit Health Gate
-
 <div align="center">
-  <img src="commit_health_gate_logo.png" alt="Commit Health Gate Logo" width="200" />
+  <img src="assets/logo.png" alt="Commit Health Gate Logo" width="128" />
 
-  <br />
+  <h1>Commit Health Gate</h1>
 
-  [![Marketplace](https://img.shields.io/badge/Marketplace-Commit_Health_Gate-blue.svg?logo=github)](https://github.com/marketplace/actions/commit-health-gate)
-  [![CI](https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml/badge.svg)](https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml)
-  [![codecov](https://codecov.io/gh/rw-core/commit-health-gate/graph/badge.svg)](https://codecov.io/gh/rw-core/commit-health-gate)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  <p>
+    <a href="https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml"><img src="https://github.com/rw-core/commit-health-gate/actions/workflows/release.yml/badge.svg" alt="CI"></a>
+    <a href="https://github.com/marketplace/actions/commit-health-gate"><img src="https://img.shields.io/badge/marketplace-Commit_Health_Gate-blue.svg?logo=github" alt="GitHub Marketplace"></a>
+    <a href="https://codecov.io/gh/rw-core/commit-health-gate"><img src="https://codecov.io/gh/rw-core/commit-health-gate/graph/badge.svg" alt="codecov"></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  </p>
 </div>
+
 
 A language-agnostic code-quality gate for Pull Requests. It automatically analyzes the commits in a PR and fails or warns if they contain "mega commits" (too many lines or files changed) or commits with suspicious patterns.
 
@@ -52,14 +53,16 @@ jobs:
         uses: rw-core/commit-health-gate@v1
         with:
           # Optional: Specify thresholds
-          mega-commit-line-threshold: '500'
-          mega-commit-file-threshold: '20'
+          # github-token: ${{ github.token }}
+          # mega-commit-line-threshold: '500'
+          # mega-commit-file-threshold: '20'
           # Set to true to fail the workflow on violations
-          fail-on-violation: 'true'
+          # fail-on-violation: 'false'
           # Burnout check configuration
-          fail-on-burnout: 'false'
-          work-hours-start: '9'
-          work-hours-end: '17'
+          # fail-on-burnout: 'false'
+          # work-hours-start: '9'
+          # work-hours-end: '17'
+          # working-directory: '.'
 ```
 
 ## Inputs
