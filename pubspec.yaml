@@ -1,6 +1,6 @@
 name: commit_health_gate
 description: A GitHub Action that flags unhealthy commits in pull requests.
-version: 1.0.3
+version: 1.0.4
 publish_to: none
 
 environment:
